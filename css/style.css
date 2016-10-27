@@ -102,3 +102,10 @@ h3,h4,h5 {
 #main {
  padding-top:120px;
 }
+
+.field {
+	width: 100px;
+	display: block;
+	float: left;
+	font-weight: bold;
+}
