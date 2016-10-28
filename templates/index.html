@@ -9,14 +9,11 @@
       <hr>
       <p><span class="field">Manufacturer</span>: {{starship.manufacturer}}</p>
       <hr>
-      <p><span class="field">Crew</span>: <span ng-hide="starship.edit">{{starship.crew}}</span>
-        <!-- <button type="button" class="btn btn-default btn-lg" ng-click="edit(starshipKey)" ng-hide="starship.edit"> -->
-          <span class="glyphicon glyphicon-pencil" ng-click="edit(starshipKey)" ng-hide="starship.edit"></span>
-        <!-- </button> -->
-        <input type="text" ng-model="starship.crew_edit" ng-show="starship.edit">
-        <!-- <button type="button" class="btn btn-default btn-lg" ng-click="ok(starshipKey)" ng-show="starship.edit"> -->
-          <span class="glyphicon glyphicon-ok" ng-click="ok(starshipKey)" ng-show="starship.edit"></span>
-        <!-- </button> -->
+      <p>
+        <span class="field">Crew</span>: <span ng-hide="starship.edit">{{starship.crew}}</span>&nbsp;&nbsp;
+        <span style="cursor: pointer;" class="glyphicon glyphicon-pencil" ng-click="edit(starshipKey)" ng-hide="starship.edit"></span>
+        <input type="text" ng-model="starship.crew_edit" ng-show="starship.edit">&nbsp;&nbsp;
+        <span style="cursor: pointer;" class="glyphicon glyphicon-ok" ng-click="ok(starshipKey)" ng-show="starship.edit"></span>
       </p>
       <hr>
     </div>

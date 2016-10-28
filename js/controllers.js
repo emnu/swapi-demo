@@ -4,10 +4,11 @@ angular.module('starter.controllers', [])
   $scope.url = 'http://swapi.co/api';
 })
 
-.controller('IndexCtrl', function($scope, $http, $uibModal) {
+.controller('IndexCtrl', function($scope, $http, $timeout) {
   var starshipIds = [5,9,10,11,15];
   $scope.starships = [];
 
+  // Push starship data to array
   var sort = function(data) {
     if($scope.starships.length == 0) {
       $scope.starships.push(data);
@@ -30,6 +31,7 @@ angular.module('starter.controllers', [])
     }
   }
 
+  // get startship data from SWAPI
   var getStarship = function(id) {
     $http.get($scope.url+'/starships/'+id[0]+'/')
     .success(function(data) {
@@ -42,20 +44,22 @@ angular.module('starter.controllers', [])
     });
   }
 
+  // enable edit for starship crew number
   $scope.edit = function(key) {
     $scope.starships[key].edit = true;
   };
 
+  // save and re-sort startship based on new crew number
   $scope.ok = function(key) {
     $scope.starships[key].edit = false;
-    if(parseInt($scope.starships[key].crew_edit) != parseInt($scope.starships[key].crew)) {
+    if(parseInt($scope.starships[key].crew_edit) != parseInt($scope.starships[key].crew)) { // if new crew number is diffrerent from current crew number
       $scope.starships[key].crew = $scope.starships[key].crew_edit;
       data = $scope.starships[key];
-      $scope.starships.splice(key, 1);
-      sort(data);
+      $scope.starships.splice(key, 1); // remove from starship array
+      $timeout(function () {
+        sort(data); // re-add starship data to array
+      }, 500);
     }
-    
-    //@TODO: bubble sort
   }
 
   getStarship(starshipIds.splice(0,1));
